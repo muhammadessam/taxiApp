@@ -15,14 +15,23 @@
  * These routes are prefixed with 'api' by default.
  * These routes use the root namespace 'App\Http\Controllers\Api'.
  */
-Route::namespace ('Api')->group(function () {
+Route::namespace('Api')->group(function () {
 
-	/**
-	 * These routes are prefixed with 'api/v1'.
-	 * These routes use the root namespace 'App\Http\Controllers\Api\V1'.
-	 */
-	Route::prefix('v1')->namespace('V1')->group(function () {
-		include_route_files('api/v1');
-	});
+    /**
+     * These routes are prefixed with 'api/v1'.
+     * These routes use the root namespace 'App\Http\Controllers\Api\V1'.
+     */
+    Route::prefix('v1')->namespace('V1')->group(function () {
+        include_route_files('api/v1');
+    });
 
+    /*
+     * New requested modifications for version 1
+     */
+    Route::middleware('auth:api')->group(function () {
+        Route::get('plans', [\App\Http\Controllers\Api\V1\Plans\PlanController::class, 'index']);
+        Route::post('set-driver-locs', [\App\Http\Controllers\Api\V1\Driver\PlanDriverController::class, 'setDriverLocations']);
+        Route::post('set-driver-times', [\App\Http\Controllers\Api\V1\Driver\PlanDriverController::class, 'setDriverAvailability']);
+
+    });
 });

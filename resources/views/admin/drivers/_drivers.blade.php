@@ -35,7 +35,7 @@
 <th> @lang('view_pages.type')
 <span style="float: right;">
 </span>
-@if(auth()->user()->can('driver-document'))         
+@if(auth()->user()->can('driver-document'))
 </th>
 <th>@lang('view_pages.document_view')</th>
 <!-- <th> @lang('view_pages.status') -->
@@ -101,7 +101,7 @@
 @endforeach
 </td>
 @endif
-    @if(auth()->user()->can('driver-document'))  
+    @if(auth()->user()->can('driver-document'))
 <td>
 
     <a href="{{ url('drivers/document/view',$result->id) }}" class="btn btn-social-icon btn-bitbucket">
@@ -127,11 +127,11 @@
 <td>--</td>
 @endif
 <td>
-  @php $rating = $result->rating($result->user_id); @endphp  
+  @php $rating = $result->rating($result->user_id); @endphp
 
             @foreach(range(1,5) as $i)
                 <span class="fa-stack" style="width:1em">
-                   
+
                     @if($rating > 0)
                         @if($rating > 0.5)
                             <i class="fa fa-star checked"></i>
@@ -143,7 +143,7 @@
                     @endif
                     @php $rating--; @endphp
                 </span>
-            @endforeach 
+            @endforeach
 
 <td>
 
@@ -151,11 +151,15 @@
 </button>
 @if($result->approve == 1)
      <div class="dropdown-menu w-48 ">
-    @if(auth()->user()->can('edit-drivers'))         
+    @if(auth()->user()->can('edit-drivers'))
 
         <a class="dropdown-item" href="{{url('drivers',$result->id)}}">
             <i class="fa fa-pencil"></i>@lang('view_pages.edit')
       </a>
+             <a class="dropdown-item" href="{{route('admin.setDriverTimes', $result)}}">
+                 <i class="fa fa-clock-o"></i>
+                 @lang('view_pages.setTimes')
+             </a>
     @endif
         <!-- @if($result->active)
         <a class="dropdown-item" href="{{url('drivers/toggle_status',$result->id)}}">
@@ -164,7 +168,7 @@
         <a class="dropdown-item" href="{{url('drivers/toggle_status',$result->id)}}">
         <i class="fa fa-dot-circle-o"></i>@lang('view_pages.active')</a>
         @endif -->
-    @if(auth()->user()->can('toggle-drivers'))         
+    @if(auth()->user()->can('toggle-drivers'))
         <a class="dropdown-item decline" data-reason="{{ $result->reason }}" data-id="{{ $result->id }}" href="{{url('drivers/toggle_approve',['driver'=>$result->id,'approval_status'=>0])}}">
         <i class="fa fa-dot-circle-o"></i>@lang('view_pages.disapproved')</a>
 
@@ -178,26 +182,26 @@
         <a class="dropdown-item" href="{{url('drivers/toggle_available',$result->id)}}">
         <i class="fa fa-dot-circle-o"></i>@lang('view_pages.online')</a>
         @endif -->
-    @if(auth()->user()->can('delete-drivers'))         
+    @if(auth()->user()->can('delete-drivers'))
         <a class="dropdown-item sweet-delete" href="#" data-url="{{url('drivers/delete',$result->id)}}">
-        <i class="fa fa-trash-o"></i>@lang('view_pages.delete')</a> 
-    @endif 
-    @if(auth()->user()->can('view-request-list'))         
-        <a class="dropdown-item" href="{{url('drivers/request-list',$result->id)}}">
-        <i class="fa fa-dot-circle-o"></i>@lang('view_pages.request_list')</a> 
+        <i class="fa fa-trash-o"></i>@lang('view_pages.delete')</a>
     @endif
-    @if(auth()->user()->can('driver-payment-history'))         
+    @if(auth()->user()->can('view-request-list'))
+        <a class="dropdown-item" href="{{url('drivers/request-list',$result->id)}}">
+        <i class="fa fa-dot-circle-o"></i>@lang('view_pages.request_list')</a>
+    @endif
+    @if(auth()->user()->can('driver-payment-history'))
         <a class="dropdown-item" href="{{url('drivers/payment-history',$result->id)}}">
         <i class="fa fa-dot-circle-o"></i>@lang('view_pages.driver_payment_history')</a>
     @endif
-    @if(auth()->user()->can('view-driver-profile'))         
+    @if(auth()->user()->can('view-driver-profile'))
         <a class="dropdown-item" href="{{url('driver_profile_dashboard_view',$result->id)}}">
         <i class="fa fa-dot-circle-o"></i>@lang('view_pages.view_profile')</a>
     @endif
     </div>
 @else
     <div class="dropdown-menu">
-        @if(auth()->user()->can('edit-drivers'))         
+        @if(auth()->user()->can('edit-drivers'))
             <a class="dropdown-item" href="{{url('drivers',$result->id)}}">
                 <i class="fa fa-pencil"></i>@lang('view_pages.edit')
             </a>
@@ -210,7 +214,7 @@
         <a class="dropdown-item" href="{{url('drivers/toggle_status',$result->id)}}">
         <i class="fa fa-dot-circle-o"></i>@lang('view_pages.active')</a>
         @endif -->
-        @if(auth()->user()->can('toggle-drivers'))         
+        @if(auth()->user()->can('toggle-drivers'))
         <a class="dropdown-item decline" data-reason="{{ $result->reason }}" data-id="{{ $result->id }}" href="{{url('drivers/toggle_approve',['driver'=>$result->id,'approval_status'=>0])}}">
         <i class="fa fa-dot-circle-o"></i>@lang('view_pages.disapproved')</a>
 
@@ -224,14 +228,14 @@
         <a class="dropdown-item" href="{{url('drivers/toggle_available',$result->id)}}">
         <i class="fa fa-dot-circle-o"></i>@lang('view_pages.online')</a>
         @endif -->
-        @if(auth()->user()->can('delete-drivers'))         
+        @if(auth()->user()->can('delete-drivers'))
         <a class="dropdown-item sweet-delete" href="#" data-url="{{url('drivers/delete',$result->id)}}">
-        <i class="fa fa-trash-o"></i>@lang('view_pages.delete')</a> 
+        <i class="fa fa-trash-o"></i>@lang('view_pages.delete')</a>
         @endif
 </div>
 @endif
-                     
-</td>   
+
+</td>
 </a>
 </tr>
 @endforeach

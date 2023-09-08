@@ -12,6 +12,8 @@ class Plan extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
+    protected $with = ['vehicle_type'];
+
     protected $fillable = [
         'title',
         'price_per_km',

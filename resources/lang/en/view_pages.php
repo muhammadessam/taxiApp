@@ -1,6 +1,7 @@
 <?php
 
 return array(
+    'setTimes' => 'Set Driver times',
     'back' => 'Back',
     'loading' => 'Loading...',
     'icons' => 'Icons',

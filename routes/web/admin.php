@@ -233,6 +233,12 @@ Route::middleware('auth:web')->group(function () {
 //drivers
 
         Route::group(['prefix' => 'drivers'], function () {
+            /*
+             * New features routes
+             */
+            Route::get('set-driver-times/{driver}', 'DriverController@setTimes')->name('admin.setDriverTimes');
+
+
             // prefix('drivers')->group(function () {
             Route::get('/', 'DriverController@index');
             Route::get('/fetch/approved', 'DriverController@getApprovedDrivers');

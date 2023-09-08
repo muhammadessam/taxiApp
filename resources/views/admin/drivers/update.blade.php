@@ -3,7 +3,6 @@
 
 
 @section('content')
-
     <!-- Start Page content -->
     <div class="content">
         <div class="container-fluid">
@@ -24,7 +23,7 @@
                         <div class="col-sm-12">
 
                             <form method="post" class="form-horizontal" action="{{ url('drivers/update', $item->id) }}"
-                                enctype="multipart/form-data">
+                                  enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-6">
@@ -33,7 +32,7 @@
                                                 <span class="text-danger">*</span>
                                             </label>
                                             <select name="service_location_id" id="service_location_id" class="form-control"
-                                                onchange="getypesAndCompanys()" required>
+                                                    onchange="getypesAndCompanys()" required>
                                                 <option value="" selected disabled>@lang('view_pages.select_area')</option>
                                                 @foreach ($services as $key => $service)
                                                     <option value="{{ $service->id }}"
@@ -47,14 +46,14 @@
                                         <div class="form-group">
                                             <label for="name">@lang('view_pages.name') <span class="text-danger">*</span></label>
                                             <input class="form-control" type="text" id="name" name="name"
-                                                value="{{ old('name', $item->name) }}" required=""
-                                                placeholder="@lang('view_pages.enter_name')">
+                                                   value="{{ old('name', $item->name) }}" required=""
+                                                   placeholder="@lang('view_pages.enter_name')">
                                             <span class="text-danger">{{ $errors->first('name') }}</span>
 
                                         </div>
                                     </div>
                                 </div>
-       <!--                              <div class="col-sm-6">
+                                <!--                              <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="address">@lang('view_pages.address') <span class="text-danger">*</span></label>
                                             <input class="form-control" type="text" id="address" name="address"
@@ -67,13 +66,13 @@
                                  </div> -->
 
                                 <div class="row">
-                                   <!--  <div class="col-6">
+                                    <!--  <div class="col-6">
                                         <div class="form-group">
                                             <label for="gender">@lang('view_pages.gender')
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <select name="gender" id="gender" class="form-control" required>
-                                                <option value="">@lang('view_pages.select_gender')</option>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <select name="gender" id="gender" class="form-control" required>
+                                    <option value="">@lang('view_pages.select_gender')</option>
                                                 <option value='male'
                                                     {{ old('gender', $item->gender) == 'male' ? 'selected' : '' }}>
                                                     @lang('view_pages.male')</option>
@@ -88,67 +87,67 @@
 
                                         </div>
                                     </div> -->
-                                <div class="col-6">
-                                    @if(env('APP_FOR')=='demo')
-                                        <div class="form-group">
-                                            <label for="name">@lang('view_pages.mobile') <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" id="mobile" name="mobile"
-                                                value="{{ old('mobile', "********") }}" required=""
-                                                placeholder="@lang('view_pages.enter_mobile')">
-                                            <span class="text-danger">{{ $errors->first('mobile') }}</span>
+                                    <div class="col-6">
+                                        @if(env('APP_FOR')=='demo')
+                                            <div class="form-group">
+                                                <label for="name">@lang('view_pages.mobile') <span class="text-danger">*</span></label>
+                                                <input class="form-control" type="text" id="mobile" name="mobile"
+                                                       value="{{ old('mobile', "********") }}" required=""
+                                                       placeholder="@lang('view_pages.enter_mobile')">
+                                                <span class="text-danger">{{ $errors->first('mobile') }}</span>
 
-                                        </div>
-                                    @else
-                                        <div class="form-group">
-                                            <label for="name">@lang('view_pages.mobile') <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" id="mobile" name="mobile"
-                                                value="{{ old('mobile', $item->mobile) }}" required=""
-                                                placeholder="@lang('view_pages.enter_mobile')">
-                                            <span class="text-danger">{{ $errors->first('mobile') }}</span>
+                                            </div>
+                                        @else
+                                            <div class="form-group">
+                                                <label for="name">@lang('view_pages.mobile') <span class="text-danger">*</span></label>
+                                                <input class="form-control" type="text" id="mobile" name="mobile"
+                                                       value="{{ old('mobile', $item->mobile) }}" required=""
+                                                       placeholder="@lang('view_pages.enter_mobile')">
+                                                <span class="text-danger">{{ $errors->first('mobile') }}</span>
 
-                                        </div>
-                                    @endif
+                                            </div>
+                                        @endif
                                     </div>
 
                                     <div class="col-sm-6">
-                                    @if(env('APP_FOR')=='demo')
-                                        <div class="form-group">
-                                            <label for="email">@lang('view_pages.email') <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="email" id="email" name="email"
-                                                value="{{ old('email', "******************") }}" required=""
-                                                placeholder="@lang('view_pages.enter_email')">
-                                            <span class="text-danger">{{ $errors->first('email') }}</span>
-                                        </div>
-                                    @else
-                                        <div class="form-group">
-                                            <label for="email">@lang('view_pages.email') <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="email" id="email" name="email"
-                                                value="{{ old('email', $item->email) }}" required=""
-                                                placeholder="@lang('view_pages.enter_email')">
-                                            <span class="text-danger">{{ $errors->first('email') }}</span>
-                                        </div>
-                                    @endif
+                                        @if(env('APP_FOR')=='demo')
+                                            <div class="form-group">
+                                                <label for="email">@lang('view_pages.email') <span class="text-danger">*</span></label>
+                                                <input class="form-control" type="email" id="email" name="email"
+                                                       value="{{ old('email', "******************") }}" required=""
+                                                       placeholder="@lang('view_pages.enter_email')">
+                                                <span class="text-danger">{{ $errors->first('email') }}</span>
+                                            </div>
+                                        @else
+                                            <div class="form-group">
+                                                <label for="email">@lang('view_pages.email') <span class="text-danger">*</span></label>
+                                                <input class="form-control" type="email" id="email" name="email"
+                                                       value="{{ old('email', $item->email) }}" required=""
+                                                       placeholder="@lang('view_pages.enter_email')">
+                                                <span class="text-danger">{{ $errors->first('email') }}</span>
+                                            </div>
+                                        @endif
                                     </div>
 
                                 </div>
-                                
-                                <div class="row">
-                                   
-                                 <div class="col-sm-6" style="padding-right: 50px;">
-                                    <div class="form-group">
-                                        <label for="type">@lang('view_pages.select_type')
-                                            <span class="text-danger">*</span>
-                                        </label>
 
-                                <select name="type[]" id="type" class="form-control select2" multiple="multiple" required>
-                               @foreach($types as $key=>$type)
-                                    <option value="{{ $type->id }}" {{ old('type[]', $item->driverVehicleTypeDetail()->Where('vehicle_type', $type->id)->pluck('vehicle_type')->first()) ? 'selected' : '' }}>
-                                    {{ $type->name }}</option>
-                               @endforeach
-                                  </select>
+                                <div class="row">
+
+                                    <div class="col-sm-6" style="padding-right: 50px;">
+                                        <div class="form-group">
+                                            <label for="type">@lang('view_pages.select_type')
+                                                <span class="text-danger">*</span>
+                                            </label>
+
+                                            <select name="type[]" id="type" class="form-control select2" multiple="multiple" required>
+                                                @foreach($types as $key=>$type)
+                                                    <option value="{{ $type->id }}" {{ old('type[]', $item->driverVehicleTypeDetail()->Where('vehicle_type', $type->id)->pluck('vehicle_type')->first()) ? 'selected' : '' }}>
+                                                        {{ $type->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                 </div>
-                                 <div class="col-6">
+                                    <div class="col-6">
                                         <div class="form-group">
                                             <label for="car_make">@lang('view_pages.car_make')<span
                                                     class="text-danger">*</span></label>
@@ -162,11 +161,11 @@
                                             </select>
                                         </div>
                                     </div>
-                                 </div>
+                                </div>
 
                                 <div class="row">
-                                    
-                                <div class="col-6">
+
+                                    <div class="col-6">
                                         <div class="form-group">
                                             <label for="car_model">@lang('view_pages.car_model')<span
                                                     class="text-danger">*</span></label>
@@ -185,8 +184,8 @@
                                         <div class="form-group">
                                             <label for="car_color">@lang('view_pages.car_color') <span class="text-danger">*</span></label>
                                             <input class="form-control" type="text" id="car_color" name="car_color"
-                                                value="{{ old('car_color', $item->car_color) }}" required=""
-                                                placeholder="@lang('view_pages.enter') @lang('view_pages.car_color')">
+                                                   value="{{ old('car_color', $item->car_color) }}" required=""
+                                                   placeholder="@lang('view_pages.enter') @lang('view_pages.car_color')">
                                             <span class="text-danger">{{ $errors->first('car_color') }}</span>
                                         </div>
                                     </div>
@@ -195,27 +194,27 @@
                                         <div class="form-group">
                                             <label for="car_number">@lang('view_pages.car_number') <span class="text-danger">*</span></label>
                                             <input class="form-control" type="text" id="car_number" name="car_number"
-                                                value="{{ old('car_number', $item->car_number) }}" required=""
-                                                placeholder="@lang('view_pages.enter') @lang('view_pages.car_number')">
+                                                   value="{{ old('car_number', $item->car_number) }}" required=""
+                                                   placeholder="@lang('view_pages.enter') @lang('view_pages.car_number')">
                                             <span class="text-danger">{{ $errors->first('car_number') }}</span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                    <div class="col-6">
-                                        <label for="profile_picture">@lang('view_pages.profile')</label><br>
-                                        <img class="user-image" id="blah" src="{{asset( $item->user->profile_picture) }}" alt=" "><br>
-                                        <input type="file" id="icon" onchange="readURL(this)" name="profile_picture"
-                                            style="display:none">
-                                        <button class="btn btn-primary btn-sm" type="button" onclick="$('#icon').click()"
-                                            id="upload">@lang('view_pages.browse')</button>
-                                        <button class="btn btn-danger btn-sm" type="button" id="remove_img"
-                                            style="display: none;">@lang('view_pages.remove')</button><br>
-                                        <span class="text-danger">{{ $errors->first('icon') }}</span>
+                                        <div class="col-6">
+                                            <label for="profile_picture">@lang('view_pages.profile')</label><br>
+                                            <img class="user-image" id="blah" src="{{asset( $item->user->profile_picture) }}" alt=" "><br>
+                                            <input type="file" id="icon" onchange="readURL(this)" name="profile_picture"
+                                                   style="display:none">
+                                            <button class="btn btn-primary btn-sm" type="button" onclick="$('#icon').click()"
+                                                    id="upload">@lang('view_pages.browse')</button>
+                                            <button class="btn btn-danger btn-sm" type="button" id="remove_img"
+                                                    style="display: none;">@lang('view_pages.remove')</button>
+                                            <br>
+                                            <span class="text-danger">{{ $errors->first('icon') }}</span>
+                                        </div>
                                     </div>
+
                                 </div>
-                                
-                                </div>
-                                
 
 
                                 <div class="form-group">
@@ -243,14 +242,14 @@
     <!-- content -->
     <!-- jQuery 3 -->
     <script src="{{ asset('assets/vendor_components/jquery/dist/jquery.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+    <script src="{{asset('js/select2.min.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('css/select2.min.css')}}">
     <script>
 
-       $('.select2').select2({
-        placeholder : "Select ...",
-    });
-        $('#is_company_driver').change(function() {
+        $('.select2').select2({
+            placeholder: "Select ...",
+        });
+        $('#is_company_driver').change(function () {
             var value = $(this).val();
             if (value == 1) {
                 $('#companyShow').show();
@@ -271,7 +270,7 @@
                 data: {
                     'admin_id': admin_id,
                 },
-                success: function(result) {
+                success: function (result) {
                     $('#type').empty();
 
                     $("#type").append('<option value="">Select Type</option>');
@@ -285,7 +284,7 @@
 
                     $('#type').select();
                 },
-                error: function() {
+                error: function () {
 
                 }
             });
@@ -296,7 +295,7 @@
                 data: {
                     'admin_id': admin_id,
                 },
-                success: function(result) {
+                success: function (result) {
                     $('#company').empty();
 
                     $("#company").append('<option value="">Select Company</option>');
@@ -310,14 +309,14 @@
 
                     $('#company').select();
                 },
-                error: function() {
+                error: function () {
 
                 }
             });
         }
 
 
-        $(document).on('change', '#car_make', function() {
+        $(document).on('change', '#car_make', function () {
             let value = $(this).val();
 
             $.ajax({
@@ -326,7 +325,7 @@
                 data: {
                     'car_make': value,
                 },
-                success: function(result) {
+                success: function (result) {
                     $('#car_model').empty();
                     $("#car_model").append('<option value="" selected disabled>Select</option>');
                     result.forEach(element => {
