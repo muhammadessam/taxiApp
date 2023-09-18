@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Admin\Driver;
+use App\Models\Admin\VehicleType;
 use App\Models\Plan;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -13,10 +14,11 @@ return new class extends Migration {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Plan::class, 'plan_id')->nullable()->default(null)->references('id')->on('plans')->nullOnDelete();
-            $table->date('started_at')->nullable()->default(null);
-            $table->date('ended_at')->nullable()->default(null);
             $table->foreignIdFor(User::class, 'user_id')->nullable()->default(null);
             $table->foreignIdFor(Driver::class, 'driver_id')->nullable()->default(null);
+            $table->foreignIdFor(VehicleType::class, 'vehicle_type_id')->nullable()->default(null)->constrained()->nullOnDelete();
+            $table->date('started_at')->nullable()->default(null);
+            $table->date('ended_at')->nullable()->default(null);
             $table->string('pick_up_lat')->nullable()->default(null);
             $table->string('pick_up_lng')->nullable()->default(null);
             $table->string('delivery_lat')->nullable()->default(null);

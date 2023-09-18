@@ -721,4 +721,5 @@ Route::middleware('auth:web')->prefix('plans')->namespace('Admin')->group(functi
 
 Route::middleware('auth:web')->prefix('subscriptions')->namespace('Admin')->group(function () {
     Route::get('/', [\App\Http\Controllers\Web\Admin\SubscriptionController::class, 'index'])->name('subscription.index');
+    Route::delete('/{subscription}', [\App\Http\Controllers\Web\Admin\SubscriptionController::class, 'delete'])->name('subscription.delete');
 });

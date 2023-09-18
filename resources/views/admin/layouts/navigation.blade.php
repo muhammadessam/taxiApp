@@ -239,14 +239,14 @@
                 </li>
             @endif
 
-            @if(auth()->user()->can('map-menu'))
+{{--            @if(auth()->user()->can('map-menu'))--}}
                 <li class="treeview {{ 'map' == $main_menu ? 'active menu-open' : '' }}">
                     <a href="javascript: void(0);">
                         <i class="fa fa-map"></i>
                         <span> @lang('pages_names.map') </span>
                         <span class="pull-right-container">
-            <i class="fa fa-angle-right pull-right"></i>
-          </span>
+                          <i class="fa fa-angle-right pull-right"></i>
+                        </span>
                     </a>
 
                     <ul class="treeview-menu">
@@ -281,7 +281,7 @@
                         @endif -->
                     </ul>
                 </li>
-            @endif
+{{--            @endif--}}
             @if(auth()->user()->can('vehicle-fare'))
                 <li class="{{'vehicle-fare' == $main_menu ? 'active' : '' }}">
                     <a href="{{url('/vehicle_fare')}}"><i class="fa fa-money"></i>@lang('pages_names.set_price')</a>

@@ -822,5 +822,7 @@ return array(
     'car_type' => 'Car type',
     'plans_title' => 'Title',
     'add_plan' => 'Add plan',
+    'plan' => 'Plan',
+    'end_date' => 'End date'
 
 );

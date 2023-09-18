@@ -144,4 +144,7 @@ return array(
     'plan_added_successfully' => 'Plan added successfully',
     'plan_deleted_successfully' => 'Plan delete successfully',
     'plan_updated_successfully' => 'Plan updated successfully',
+    'subscription_delete_successfully' => 'Subscription deleted successfully',
+    'subscription_added_successfully' => 'Subscription added successfully',
+
 );
