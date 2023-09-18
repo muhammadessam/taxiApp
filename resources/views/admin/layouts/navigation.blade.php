@@ -72,6 +72,10 @@
 
 
 
+
+
+
+
                         @endif  -->
                     </ul>
                 </li>
@@ -128,6 +132,9 @@
             @endif
             <li class="{{ 'plans' == $main_menu ? 'active' : '' }}">
                 <a href="{{route('plans.index')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.plans')</a>
+            </li>
+            <li class="{{ 'subscriptions' == $main_menu ? 'active' : '' }}">
+                <a href="{{route('subscription.index')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.subscriptions')</a>
             </li>
             @if(auth()->user()->can('service_location'))
                 <li class="{{'service_location' == $main_menu ? 'active' : '' }}">
@@ -257,6 +264,10 @@
                             <li class="{{ 'vehicle_fare' == $sub_menu ? 'active' : '' }}">
             <a href="{{ url('vehicle_fare') }}"><i class="fa fa-circle-thin"></i>@lang('pages_names.vehicle_fare')</a>
           </li>
+
+
+
+
 
 
 
@@ -664,6 +675,10 @@
 
 
 
+
+
+
+
             @endif -->
 
             <!--  @if(auth()->user()->can('view-companies'))
@@ -672,6 +687,10 @@
               <i class="fa fa-building"></i> <span>@lang('pages_names.company')</span>
             </a>
           </li>
+
+
+
+
 
 
 
@@ -702,6 +721,10 @@
 
 
 
+
+
+
+
             @endif -->
             <!--  @if(access()->hasRole('super-admin'))
                 <li class="{{'developer' == $main_menu ? 'active' : '' }}">
@@ -709,6 +732,10 @@
               <i class="fa fa-users"></i> <span>@lang('pages_names.developers')</span>
             </a>
           </li>
+
+
+
+
 
 
 
@@ -747,6 +774,10 @@
 
 
 
+
+
+
+
                 @endif
                 @if(auth()->user()->can('upload-builds'))
                     <li class="{{ 'upload_builds' == $sub_menu ? 'active' : '' }}">
@@ -762,10 +793,15 @@
 
 
 
+
+
+
+
                 @endif
 
                 </ul>
             </li>
+
 
 
 

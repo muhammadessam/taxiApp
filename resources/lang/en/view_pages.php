@@ -2,6 +2,7 @@
 
 return array(
     'setTimes' => 'Set Driver times',
+    'subscriptions' => 'Subscriptions',
     'back' => 'Back',
     'loading' => 'Loading...',
     'icons' => 'Icons',

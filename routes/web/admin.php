@@ -717,3 +717,8 @@ Route::middleware('auth:web')->prefix('plans')->namespace('Admin')->group(functi
     Route::put('/{plan}', [\App\Http\Controllers\Web\Admin\PlansController::class, 'update'])->name('plans.update');
     Route::delete('/{plan}', [\App\Http\Controllers\Web\Admin\PlansController::class, 'destroy'])->name('plans.destroy');
 });
+
+
+Route::middleware('auth:web')->prefix('subscriptions')->namespace('Admin')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Web\Admin\SubscriptionController::class, 'index'])->name('subscription.index');
+});

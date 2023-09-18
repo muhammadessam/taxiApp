@@ -30,8 +30,10 @@ Route::namespace('Api')->group(function () {
      */
     Route::middleware('auth:api')->group(function () {
         Route::get('plans', [\App\Http\Controllers\Api\V1\Plans\PlanController::class, 'index']);
+        Route::get('get-radius-drivers', [\App\Http\Controllers\Api\V1\Driver\PlanDriverController::class, 'getDriverWithinSomeRadius']);
         Route::post('set-driver-locs', [\App\Http\Controllers\Api\V1\Driver\PlanDriverController::class, 'setDriverLocations']);
         Route::post('set-driver-times', [\App\Http\Controllers\Api\V1\Driver\PlanDriverController::class, 'setDriverAvailability']);
 
+        Route::post('subscribe', [\App\Http\Controllers\Api\V1\Subscription\SubscriptionController::class, 'subscribe']);
     });
 });

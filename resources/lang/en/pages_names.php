@@ -2,6 +2,7 @@
 
 return array(
     'my_profile' => 'My Profile',
+    'subscriptions' => 'Subscriptions',
     'logout' => 'Logout',
     'settings' => 'Configurations',
     'master' => 'Master Data',
