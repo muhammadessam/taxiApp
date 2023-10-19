@@ -45,27 +45,27 @@ class VehicleTypeController extends BaseController
     }
 
     /**
-    * Get all vehicle types by geo location
-    * @urlParam lat required double  latitude provided by user
-    * @urlParam lng required double  longitude provided by user
-    * @response {
-    "success": true,
-    "message": "success",
-    "data": [
-        {
-            "id": "9ea6f9a0-6fd2-4962-9d81-645e6301096f",
-            "name": "Mini",
-            "icon": null,
-            "capacity": 4,
-            "is_accept_share_ride": 0,
-            "active": 1,
-            "created_at": "2020-02-13 09:06:39",
-            "updated_at": "2020-02-13 09:06:39",
-            "deleted_at": null
-        }
-    ]
-}
-    */
+     * Get all vehicle types by geo location
+     * @urlParam lat required double  latitude provided by user
+     * @urlParam lng required double  longitude provided by user
+     * @response {
+     * "success": true,
+     * "message": "success",
+     * "data": [
+     * {
+     * "id": "9ea6f9a0-6fd2-4962-9d81-645e6301096f",
+     * "name": "Mini",
+     * "icon": null,
+     * "capacity": 4,
+     * "is_accept_share_ride": 0,
+     * "active": 1,
+     * "created_at": "2020-02-13 09:06:39",
+     * "updated_at": "2020-02-13 09:06:39",
+     * "deleted_at": null
+     * }
+     * ]
+     * }
+     */
     public function getTypesByLocationOld($lat, $lng)
     {
         $zone = find_zone($lat, $lng);
@@ -76,17 +76,17 @@ class VehicleTypeController extends BaseController
 
         $response = $zone->zoneType;
 
-        $result =  fractal($response, new ZoneTypeTransformerOld);
+        $result = fractal($response, new ZoneTypeTransformerOld);
 
         return $this->respondSuccess($result);
     }
 
     /**
-    * Get all vehicle types by geo location along with prcing detail
-    * @urlParam lat required double  latitude provided by user
-    * @urlParam lng required double  longitude provided by user
-    * @responseFile responses/user/trips/types-along-price.json
-    */
+     * Get all vehicle types by geo location along with prcing detail
+     * @urlParam lat required double  latitude provided by user
+     * @urlParam lng required double  longitude provided by user
+     * @responseFile responses/user/trips/types-along-price.json
+     */
     public function getTypesByLocationAlongPrice($lat, $lng)
     {
         $zone = find_zone($lat, $lng);
@@ -97,31 +97,30 @@ class VehicleTypeController extends BaseController
 
         $response = $zone->zoneType;
 
-        $result =  fractal($response, new ZoneTypeTransformer)->parseIncludes('zoneTypePrice');
+        $result = fractal($response, new ZoneTypeTransformer)->parseIncludes('zoneTypePrice');
 
         return $this->respondSuccess($result);
     }
 
     /**
-    * Get Vehcile Types by Service location
-    * @urlParam service_location_id required string service location's id
-    * @response {"success":true,"message":"success","data":[{"id":"9ea6f9a0-6fd2-4962-9d81-645e6301096f","name":"Mini","icon":null,"capacity":4,"is_accept_share_ride":0,"active":1,"created_at":"2020-02-13 09:06:39","updated_at":"2020-02-13 09:06:39","deleted_at":null}]}
-    */
+     * Get Vehcile Types by Service location
+     * @urlParam service_location_id required string service location's id
+     * @response {"success":true,"message":"success","data":[{"id":"9ea6f9a0-6fd2-4962-9d81-645e6301096f","name":"Mini","icon":null,"capacity":4,"is_accept_share_ride":0,"active":1,"created_at":"2020-02-13 09:06:39","updated_at":"2020-02-13 09:06:39","deleted_at":null}]}
+     */
     public function getVehicleTypesByServiceLocation(ServiceLocation $service_location)
     {
         // DB::enableQueryLog();
-
-        $response = $this->vehicle_type->whereActive(true)->whereHas('zoneType.zone', function ($query) use ($service_location) {
-            $query->where('service_location_id', $service_location->id);
-        })->get();
-
+//        $response = $this->vehicle_type->whereActive(true)->whereHas('zoneType.zone', function ($query) use ($service_location) {
+//            $query->where('service_location_id', $service_location->id);
+//        })->get();
         // dd(DB::getQueryLog());
-
+        $response = $this->vehicle_type->whereActive(true)->get();
         return $this->respondSuccess($response);
     }
+
     /**
-    * Report test
-    */
+     * Report test
+     */
     public function report(Request $request)
     {
         $date_option = $request->date_option;
@@ -129,20 +128,20 @@ class VehicleTypeController extends BaseController
         $driver = $request->driver;
 
         if ($date_option == DateOptions::TODAY) {
-            $date_array = [$current_date->format("Y-m-d"),$current_date->format("Y-m-d"),$driver];
+            $date_array = [$current_date->format("Y-m-d"), $current_date->format("Y-m-d"), $driver];
         } elseif ($date_option == DateOptions::YESTERDAY) {
             $yesterday_date = Carbon::yesterday()->format('Y-m-d');
-            $date_array = [$yesterday_date,$yesterday_date,$driver];
+            $date_array = [$yesterday_date, $yesterday_date, $driver];
         } elseif ($date_option == DateOptions::CURRENT_WEEK) {
-            $date_array = [$current_date->startOfWeek()->toDateString(),$current_date->endOfWeek()->toDateString(),$driver];
+            $date_array = [$current_date->startOfWeek()->toDateString(), $current_date->endOfWeek()->toDateString(), $driver];
         } elseif ($date_option == DateOptions::LAST_WEEK) {
-            $date_array = [$current_date->subWeek()->toDateString(), $current_date->startOfWeek()->toDateString(),$driver];
+            $date_array = [$current_date->subWeek()->toDateString(), $current_date->startOfWeek()->toDateString(), $driver];
         } elseif ($date_option == DateOptions::CURRENT_MONTH) {
-            $date_array = [$current_date->startOfMonth()->toDateString(), $current_date->endOfMonth()->toDateString(),$driver];
+            $date_array = [$current_date->startOfMonth()->toDateString(), $current_date->endOfMonth()->toDateString(), $driver];
         } elseif ($date_option == DateOptions::PREVIOUS_MONTH) {
-            $date_array = [$current_date->startOfMonth()->toDateString(), $current_date->endOfMonth()->toDateString(),$driver];
+            $date_array = [$current_date->startOfMonth()->toDateString(), $current_date->endOfMonth()->toDateString(), $driver];
         } elseif ($date_option == DateOptions::CURRENT_YEAR) {
-            $date_array = [$current_date->startOfYear()->toDateString(), $current_date->endOfYear()->toDateString(),$driver];
+            $date_array = [$current_date->startOfYear()->toDateString(), $current_date->endOfYear()->toDateString(), $driver];
         } else {
             $date_array = [];
         }
@@ -152,8 +151,8 @@ class VehicleTypeController extends BaseController
         // dd($date_array);
         $data = DB::select('CALL get_driver_duration_report(?,?,?)', $date_array);
 
-        if (count($data)==1) {
-            $data = (object) array();
+        if (count($data) == 1) {
+            $data = (object)array();
         }
     }
 }

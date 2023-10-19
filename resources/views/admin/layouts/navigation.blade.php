@@ -76,6 +76,7 @@
 
 
 
+
                         @endif  -->
                     </ul>
                 </li>
@@ -239,29 +240,29 @@
                 </li>
             @endif
 
-{{--            @if(auth()->user()->can('map-menu'))--}}
-                <li class="treeview {{ 'map' == $main_menu ? 'active menu-open' : '' }}">
-                    <a href="javascript: void(0);">
-                        <i class="fa fa-map"></i>
-                        <span> @lang('pages_names.map') </span>
-                        <span class="pull-right-container">
+            {{--            @if(auth()->user()->can('map-menu'))--}}
+            <li class="treeview {{ 'map' == $main_menu ? 'active menu-open' : '' }}">
+                <a href="javascript: void(0);">
+                    <i class="fa fa-map"></i>
+                    <span> @lang('pages_names.map') </span>
+                    <span class="pull-right-container">
                           <i class="fa fa-angle-right pull-right"></i>
                         </span>
-                    </a>
+                </a>
 
-                    <ul class="treeview-menu">
-                        @if(auth()->user()->can('view-zone'))
-                            <li class="{{ 'zone' == $sub_menu ? 'active' : '' }}">
-                                <a href="{{url('/zone')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.zone')</a>
-                            </li>
-                        @endif
-                        @if(auth()->user()->can('list-airports'))
-                            <li class="{{ 'airport' == $sub_menu ? 'active' : '' }}">
-                                <a href="{{url('/airport')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.airport')</a>
-                            </li>
-                        @endif
-                        <!--           @if(auth()->user()->can('list-vehicle_fare'))
-                            <li class="{{ 'vehicle_fare' == $sub_menu ? 'active' : '' }}">
+                <ul class="treeview-menu">
+                    @if(auth()->user()->can('view-zone'))
+                        <li class="{{ 'zone' == $sub_menu ? 'active' : '' }}">
+                            <a href="{{url('/zone')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.zone')</a>
+                        </li>
+                    @endif
+                    @if(auth()->user()->can('list-airports'))
+                        <li class="{{ 'airport' == $sub_menu ? 'active' : '' }}">
+                            <a href="{{url('/airport')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.airport')</a>
+                        </li>
+                    @endif
+                    <!--           @if(auth()->user()->can('list-vehicle_fare'))
+                        <li class="{{ 'vehicle_fare' == $sub_menu ? 'active' : '' }}">
             <a href="{{ url('vehicle_fare') }}"><i class="fa fa-circle-thin"></i>@lang('pages_names.vehicle_fare')</a>
           </li>
 
@@ -278,10 +279,11 @@
 
 
 
-                        @endif -->
-                    </ul>
-                </li>
-{{--            @endif--}}
+
+                    @endif -->
+                </ul>
+            </li>
+            {{--            @endif--}}
             @if(auth()->user()->can('vehicle-fare'))
                 <li class="{{'vehicle-fare' == $main_menu ? 'active' : '' }}">
                     <a href="{{url('/vehicle_fare')}}"><i class="fa fa-money"></i>@lang('pages_names.set_price')</a>
@@ -679,6 +681,7 @@
 
 
 
+
             @endif -->
 
             <!--  @if(auth()->user()->can('view-companies'))
@@ -687,6 +690,7 @@
               <i class="fa fa-building"></i> <span>@lang('pages_names.company')</span>
             </a>
           </li>
+
 
 
 
@@ -725,6 +729,7 @@
 
 
 
+
             @endif -->
             <!--  @if(access()->hasRole('super-admin'))
                 <li class="{{'developer' == $main_menu ? 'active' : '' }}">
@@ -732,6 +737,7 @@
               <i class="fa fa-users"></i> <span>@lang('pages_names.developers')</span>
             </a>
           </li>
+
 
 
 
@@ -778,6 +784,7 @@
 
 
 
+
                 @endif
                 @if(auth()->user()->can('upload-builds'))
                     <li class="{{ 'upload_builds' == $sub_menu ? 'active' : '' }}">
@@ -797,10 +804,12 @@
 
 
 
+
                 @endif
 
                 </ul>
             </li>
+
 
 
 

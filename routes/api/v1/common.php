@@ -21,7 +21,7 @@ use App\Base\Constants\Auth\Role;
 
 Route::namespace('Common')->group(function () {
 
-        Route::get('matrix','CarMakeAndModelController@matrix');
+    Route::get('matrix','CarMakeAndModelController@matrix');
 
     // Masters Crud
     Route::prefix('common')->group(function () {
