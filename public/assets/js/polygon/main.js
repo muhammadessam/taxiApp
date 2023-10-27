@@ -275,7 +275,7 @@ function initMap() {
 
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 8,
-        center: new google.maps.LatLng(11.280085537724654, 76.59630807365204),
+        center: new google.maps.LatLng(24.774265,46.738586),
         mapTypeControl: false, // disabled
         mapTypeControlOptions: {
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
@@ -310,15 +310,15 @@ function initMap() {
                     fillColor: '#007cff',
                     fillOpacity: 0.4,
                 });
-        
+
                 polygon.setMap(map);
-        
+
                 addNewPolys(polygon);
-        
+
                 allShapes.push(polygon); // save the form to the allShapes list
-        
+
                 google.maps.event.addListener(polygon, 'click', function(e) { getCoordinates(polygon); });
-        
+
                 google.maps.event.addListener(polygon, "dragend", function(e) {
                     for (i=0; i < allShapes.length; i++) {
                         if (polygon.getPath() == allShapes[i].getPath()) {
@@ -331,10 +331,10 @@ function initMap() {
                     allShapes.forEach(function(data, index) {
                         lat_lng[index] = getCoordinates(data);
                     });
-        
+
                     document.getElementById('info').value = JSON.stringify(lat_lng);
                 });
-        
+
                 google.maps.event.addListener(polygon.getPath(), "insert_at", function(e) {
                     for (i=0; i < allShapes.length; i++) {   // Clear out the old allShapes entry
                         if (polygon.getPath() == allShapes[i].getPath()) {
@@ -346,7 +346,7 @@ function initMap() {
                     allShapes.forEach(function(data, index) {
                         lat_lng[index] = getCoordinates(data);
                     });
-        
+
                     document.getElementById('info').value = JSON.stringify(lat_lng);
                 });
             }
@@ -355,7 +355,7 @@ function initMap() {
                 allShapes.forEach(function(data, index) {
                     lat_lng[index] = getCoordinates(data);
                 });
-        
+
                 document.getElementById('info').value = JSON.stringify(lat_lng);
 
                 map.setZoom(10);

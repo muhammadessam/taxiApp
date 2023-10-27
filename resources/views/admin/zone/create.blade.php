@@ -98,6 +98,7 @@
 @foreach($cities as $key=>$city)
                                                 <option value="{{$city}}">{{$city}}</option>
 
+
                                             @endforeach
                                             </select>
                                             </div>
@@ -182,7 +183,7 @@
         </div>
     </div>
 
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCk8q4zvCzVS5pLISyaR8e6bAdZjuwnvB0&libraries=drawing,geometry,places"></script>
+    <script src="https://maps.google.com/maps/api/js?key={{get_settings('google_map_key')}}&libraries=drawing,geometry,places"></script>
 
     <script src="{{asset('assets/js/polygon/main.js')}}"></script>
     <script src="{{asset('assets/js/polygon/nucleu.js')}}"></script>

@@ -270,8 +270,8 @@ function findAvg(Coords) {
 
 // function that initializes the Google Maps, sets its options and calls other functions
 function initMap(results = null) {
-    var Lat = 51.1657;
-    var Lng = 10.4515;
+    var Lat = 24.774265;
+    var Lng = 46.738586;
     var latLng;
     var infoTag = document.getElementById('info');
     var zoomVal = 7;
@@ -288,7 +288,7 @@ function initMap(results = null) {
                     zones.push(JSON.parse(res[1]));
             });
         }
-        
+
         if(results['stand'] != null){
             var standArr = Object.entries(results['stand']);
             standArr.forEach(res => {
@@ -367,15 +367,15 @@ function initMap(results = null) {
                 fillColor: '#007cff',
                 fillOpacity: 0.4,
             });
-    
+
             polygon.setMap(map);
-    
+
             addNewPolys(polygon);
-    
+
             allShapes.push(polygon); // save the form to the allShapes list
-    
+
             google.maps.event.addListener(polygon, 'click', function(e) { getCoordinates(polygon); });
-    
+
             google.maps.event.addListener(polygon, "dragend", function(e) {
                 for (i=0; i < allShapes.length; i++) {
                     if (polygon.getPath() == allShapes[i].getPath()) {
@@ -388,10 +388,10 @@ function initMap(results = null) {
                 allShapes.forEach(function(data, index) {
                     lat_lng[index] = getCoordinates(data);
                 });
-    
+
                 document.getElementById('info').value = JSON.stringify(lat_lng);
             });
-    
+
             google.maps.event.addListener(polygon.getPath(), "insert_at", function(e) {
                 for (i=0; i < allShapes.length; i++) {   // Clear out the old allShapes entry
                     if (polygon.getPath() == allShapes[i].getPath()) {
@@ -403,7 +403,7 @@ function initMap(results = null) {
                 allShapes.forEach(function(data, index) {
                     lat_lng[index] = getCoordinates(data);
                 });
-    
+
                 document.getElementById('info').value = JSON.stringify(lat_lng);
             });
         }
@@ -412,7 +412,7 @@ function initMap(results = null) {
             allShapes.forEach(function(data, index) {
                 lat_lng[index] = getCoordinates(data);
             });
-    
+
             document.getElementById('info').value = JSON.stringify(lat_lng);
 
             map.setZoom(10);
