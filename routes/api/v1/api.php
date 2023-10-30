@@ -37,5 +37,8 @@ Route::namespace('Common')->group(function () {
     Route::get('translation-flutter/get', 'TranslationController@flutterTrnaslation');
 
     // Get all the ServiceLocation.
-    Route::get('servicelocation', 'ServiceLocationController@index');
+    Route::get('service-location', 'ServiceLocationController@index');
+
+    //get default location lat lng
+    Route::get('default-lat-lng','CountryController@defaultLatLng');
 });
