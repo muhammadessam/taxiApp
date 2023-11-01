@@ -11,6 +11,9 @@ class PlanDriverController extends Controller
 {
     public function setDriverAvailability(Request $request)
     {
+        if (auth()->user()->driver->lat == null || auth()->user()->driver->lng == null) {
+            return $this->respondError('please set location first', 402);
+        }
         $request->validate([
             'days' => 'required|array|required_array_keys:SATURDAY,SUNDAY,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY',
             'days.*.*.from' => 'required',
