@@ -40,5 +40,8 @@ Route::namespace('Common')->group(function () {
     Route::get('service-location', 'ServiceLocationController@index');
 
     //get default location lat lng
-    Route::get('default-lat-lng','CountryController@defaultLatLng');
+    Route::get('default-lat-lng', 'CountryController@defaultLatLng');
+
+    //check if a point is inside the first zone polygon
+    Route::post('check-inside-polygon', 'ServiceLocationController@checkInside');
 });
